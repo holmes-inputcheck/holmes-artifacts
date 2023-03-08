@@ -5,7 +5,7 @@ from benchClient import generateRemoteCmdStr
 username = "ubuntu"
 
 print("Starting asynchronous statistical graph tests.")
-print("Retrieve results after 40 minutes with `python3 TO-DO???.py`.")
+print("Retrieve results after 40 minutes with `python3 plot_simulated_dataset_graph.py` and `python3 plot_real_dataset_graph.py`")
 
 f_config = open('system.config')
 config = json.load(f_config)
