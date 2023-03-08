@@ -86,7 +86,7 @@ def plot_fig_mpc():
     fig = plt.gcf()
     fig.set_size_inches(6,4, forward=True)
 
-    pp = PdfPages('plot_group_check_spdz.pdf')
+    pp = PdfPages('plot_group_check_mpc.pdf')
     plt.savefig(pp, format='pdf', bbox_inches='tight', dpi=fig.dpi)
     pp.close()
 
