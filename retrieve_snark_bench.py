@@ -56,7 +56,7 @@ for file in jl_raw_filenames:
     process = subprocess.Popen(cmd, shell=True)
     process.wait()
 
-print("retrieved all files")
+#print("retrieved all files")
 
 range_header = "protocol,2p_8,2p_12,2p_16,2p_20,2p_24,"
 range_header += "6p_8,6p_12,6p_16,6p_20,6p_24,"

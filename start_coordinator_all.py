@@ -4,8 +4,8 @@ from benchClient import generateRemoteCmdStr
 
 username = "ubuntu"
 
-print("Starting asynchronous Pairwise 2PC bench (range+JL) tests.")
-print("Retrieve results after 2 hours with `python3 retrieve_2pc_bench.py`.")
+print("Starting ALL benchmarks asynchronously!")
+print("Retrieve results after AT LEAST 24 hours with `./retrieve_all.sh`.")
 
 f_config = open('system.config')
 config = json.load(f_config)
@@ -18,6 +18,6 @@ cmd = ("scp -i %s -o StrictHostKeyChecking=no %s ubuntu@%s:~/holmes-artifacts/")
 process = subprocess.Popen(cmd, shell=True)
 process.wait()
 
-cmd = ("cd ~/holmes-artifact/scripts; screen -dmS all_tests ./start_all.sh")
+cmd = ("cd ~/holmes-artifacts; screen -dmS all_tests ./start_all.sh")
 process = subprocess.Popen(generateRemoteCmdStr(coordinatorPublicAddr, cmd), shell=True)
 process.wait()

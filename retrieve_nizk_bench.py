@@ -43,10 +43,10 @@ devNull = open(os.devnull, 'w')
 throughput = getThroughput()
 
 range_raw_filenames = ["range_check_100000_nizk.txt", "range_check_200000_nizk.txt", "range_check_500000_nizk.txt"]
-range_csv_filenames = ["range_100000_spartan_nizk.csv", "range_200000_spartan_nizk.csv", "range_check_500000_spartan_nizk.csv"]
+range_csv_filenames = ["range_100000_spartan_nizk.csv", "range_200000_spartan_nizk.csv", "range_500000_spartan_nizk.csv"]
 jl_raw_filenames = ["jl_100000_nizk.txt", "jl_200000_nizk.txt", "jl_500000_nizk.txt"]
 jl_csv_filenames = ["jl_100000_spartan_nizk.csv", "jl_200000_spartan_nizk.csv", "jl_500000_spartan_nizk.csv"]
-
+'''
 for file in range_raw_filenames:
     cmd = ("scp -i %s -o StrictHostKeyChecking=no ubuntu@%s:~/HOLMES/holmes-spartan/%s .") % (keyPath, auxPublicAddr, file)
     process = subprocess.Popen(cmd, shell=True)
@@ -56,8 +56,9 @@ for file in jl_raw_filenames:
     cmd = ("scp -i %s -o StrictHostKeyChecking=no ubuntu@%s:~/HOLMES/holmes-spartan/%s .") % (keyPath, auxPublicAddr, file)
     process = subprocess.Popen(cmd, shell=True)
     process.wait()
+'''
 
-print("retrieved all files")
+#print("retrieved all files")
 
 range_header = "protocol,2p_8,2p_12,2p_16,2p_20,2p_24,"
 range_header += "6p_8,6p_12,6p_16,6p_20,6p_24,"

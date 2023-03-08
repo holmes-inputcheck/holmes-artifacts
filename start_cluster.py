@@ -3,10 +3,10 @@ import subprocess
 from benchClient import generateRemoteCmdStr
 
 regionAMIs = { 
-        "aux": "ami-02c4a21a55dd8a242",
-        "follower": "ami-07c0f26610662e4cc",
+        "aux": "ami-01e1a4855d549761f",
+        "follower": "ami-0489da360b66825e8",
         "leader": "ami-09e833043aecffd75",
-        "coordinator": "ami-00282907fc5dc7352"
+        "coordinator": "ami-0fbf6e826da84365a"
         }  
 
 filename = "system.config"
@@ -18,7 +18,6 @@ f_config = open(filename, "r")
 sysConfig = json.load(f_config)
 f_config.close()
 
-'''
 # Create Aux Server (Spartan + Graphs)
 cmd = ('export AWS_DEFAULT_REGION=us-west-2; aws ec2 run-instances --image-id %s --count 1 --instance-type c5.9xlarge --key-name HOLMES --placement "{\\\"AvailabilityZone\\\": \\\"us-west-2a\\\"}" --security-groups HOLMES --tag-specifications \"ResourceType=instance,Tags=[{Key=Name,Value=%s}]\"') % (regionAMIs["aux"], "aux")
 process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -75,7 +74,7 @@ f_config.close()
 # Wait for all instances to be fully started
 time.sleep(60)
 '''
-# COULD BE A BUG: COMMENT THIS WHEN WE UNCOMMENT THE ABOVE
+# COMMENT THIS WHEN WE UNCOMMENT THE ABOVE
 auxID = sysConfig["AuxID"]
 auxPublicAddr = sysConfig["AuxPublicAddr"]
 leaderID = sysConfig["LeaderID"]
@@ -84,7 +83,7 @@ followerIDs = [sysConfig["Followers"][i]["ID"] for i in range(len(sysConfig["Fol
 followerPublicAddrs = [sysConfig["Followers"][i]["PublicAddr"] for i in range(len(sysConfig["Followers"]))]
 coordinatorID = sysConfig["CoordinatorID"]
 coordinatorPublicAddr = sysConfig["CoordinatorPublicAddr"]
-
+'''
 # Retrieve Aux Server metadata
 cmd = ('export AWS_DEFAULT_REGION=us-west-2; aws ec2 describe-instances --instance-ids "%s"') % (auxID)
 process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)

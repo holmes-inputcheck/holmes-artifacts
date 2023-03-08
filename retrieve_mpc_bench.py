@@ -45,7 +45,7 @@ for file in range_files:
         for i in range(len(pl)):
             online_time = parties * float(pl[i])
             offline_time = range_offline_triples[num_records][i] * parties / throughputs[parties]
-            print("Parties: %d, Offline: %0.2f, Online: %0.2f" % (parties, offline_time, online_time))
+            #print("Parties: %d, Offline: %0.2f, Online: %0.2f" % (parties, offline_time, online_time))
             times.append("%0.1f" % (online_time + offline_time))
     fp.write(','.join(times) + "\n")
     fp.close()
@@ -94,7 +94,7 @@ for num_records in [100000, 200000, 500000]:
             mult = (num_records - 10000) / (20000 - 10000)
             online_time = parties * (jl_start_time[parties][i] + mult * jl_diff_time[parties][i])
             offline_time = jl_offline_triples[num_records][i] * parties / throughputs[parties]
-            print("Parties: %d, Offline: %0.2f, Online: %0.2f" % (parties, offline_time, online_time))
+            #print("Parties: %d, Offline: %0.2f, Online: %0.2f" % (parties, offline_time, online_time))
             times.append("%0.1f" % (online_time + offline_time))
     fp.write(','.join(times) + "\n")
     fp.close()
