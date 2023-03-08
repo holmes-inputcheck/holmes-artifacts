@@ -1,0 +1,1 @@
+cd ~/SCALE-MAMBA-0; chmod 755 2pc-range.sh; ./2pc-range.sh 2 0
