@@ -3,12 +3,15 @@
 
 For our experiments, we will use a cluster of AWS EC2 instances. Reviewers should have been provided with credentials to our AWS environment with compute resources. Reviewers should have also moved `HOLMES.pem` (provided with submission) to `~/.ssh` and set permissions to 400 using `chmod 400 HOLMES.pem`
 
-1. [2 minutes] Make sure python3 is downloaded. Then run the following:
+1. [6 minutes] Make sure python3 is downloaded. 
+Install [TexLive/MacTeX](https://tug.org/texlive/)
+And then run:
 ```
-https://github.com/holmes-inputcheck/holmes-library
-cd holmes-library/bench
-mkdir out
-pip3 install -r requirements.txt
+pip3 install numpy
+pip3 install matplotlib
+pip3 install scipy
+pip3 install pandas
+pip3 install latex
 ```
 
 2. [5 minutes] Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) (version 2 works) and run `aws configure` using the instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) (use `us-west-2` as the default region, use `json` as the default output format, and we will directly provide the Access key ID and the secret access key to the reviewers upon submission).
