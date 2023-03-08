@@ -4,8 +4,7 @@
 For our experiments, we will use a cluster of AWS EC2 instances. Reviewers should have been provided with credentials to our AWS environment with compute resources. Reviewers should have also moved `HOLMES.pem` (provided with submission) to `~/.ssh` and set permissions to 400 using `chmod 400 HOLMES.pem`
 
 1. [6 minutes] Make sure python3 is downloaded. 
-Install [TexLive/MacTeX](https://tug.org/texlive/)
-And then run:
+Install [TexLive/MacTeX](https://tug.org/texlive/), and then run:
 ```
 pip3 install numpy
 pip3 install matplotlib
