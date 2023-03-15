@@ -12,7 +12,6 @@ devNull = open(os.devnull, 'w')
 coordinatorPublicAddr = config["CoordinatorPublicAddr"]
 
 print("Starting asynchronous ZK marketing dataset bench.")
-print("Retrieve results after 5 minutes with `python3 retrieve_zk_marketing.py`.")
 
 # kill all zk scripts
 cmd = ("pkill -f zk -9")

@@ -18,30 +18,6 @@ f_config = open(filename, "r")
 sysConfig = json.load(f_config)
 f_config.close()
 
-# Create Aux Server (Spartan + Graphs)
-cmd = ('export AWS_DEFAULT_REGION=us-west-2; aws ec2 run-instances --image-id %s --count 1 --instance-type c5.9xlarge --key-name HOLMES --placement "{\\\"AvailabilityZone\\\": \\\"us-west-2a\\\"}" --security-groups HOLMES --tag-specifications \"ResourceType=instance,Tags=[{Key=Name,Value=%s}]\"') % (regionAMIs["aux"], "aux")
-process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-out = process.stdout.read()
-auxConfig = json.loads(out)
-auxID = auxConfig["Instances"][0]["InstanceId"]
-sysConfig["AuxID"] = auxID
-sysConfigBlob = json.dumps(sysConfig)
-f_config = open(filename, "w")
-f_config.write(sysConfigBlob)
-f_config.close()
-
-# Create Leader Server (MPC + 2PC + QuickSilver)
-cmd = ('export AWS_DEFAULT_REGION=us-west-2; aws ec2 run-instances --image-id %s --count 1 --instance-type c5.9xlarge --key-name HOLMES --placement "{\\\"AvailabilityZone\\\": \\\"us-west-2a\\\"}" --security-groups HOLMES --tag-specifications \"ResourceType=instance,Tags=[{Key=Name,Value=%s}]\"') % (regionAMIs["leader"], "leader")
-process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
-out = process.stdout.read()
-leaderConfig = json.loads(out)
-leaderID = leaderConfig["Instances"][0]["InstanceId"]
-sysConfig["LeaderID"] = leaderID
-sysConfigBlob = json.dumps(sysConfig)
-f_config = open(filename, "w")
-f_config.write(sysConfigBlob)
-f_config.close()
-
 # Create 10 Follower Servers (MPC + 2PC + QuickSilver)
 cmd = ('export AWS_DEFAULT_REGION=us-west-2; aws ec2 run-instances --image-id %s --count 10 --instance-type c5.9xlarge --key-name HOLMES --placement "{\\\"AvailabilityZone\\\": \\\"us-west-2a\\\"}" --security-groups HOLMES') % (regionAMIs["follower"])
 process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
@@ -55,6 +31,36 @@ sysConfigBlob = json.dumps(sysConfig)
 f_config = open(filename, "w")
 f_config.write(sysConfigBlob)
 f_config.close()
+print("Finished starting follower servers")
+time.sleep(10)
+
+# Create Aux Server (Spartan + Graphs)
+cmd = ('export AWS_DEFAULT_REGION=us-west-2; aws ec2 run-instances --image-id %s --count 1 --instance-type c5.9xlarge --key-name HOLMES --placement "{\\\"AvailabilityZone\\\": \\\"us-west-2a\\\"}" --security-groups HOLMES --tag-specifications \"ResourceType=instance,Tags=[{Key=Name,Value=%s}]\"') % (regionAMIs["aux"], "aux")
+process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+out = process.stdout.read()
+auxConfig = json.loads(out)
+auxID = auxConfig["Instances"][0]["InstanceId"]
+sysConfig["AuxID"] = auxID
+sysConfigBlob = json.dumps(sysConfig)
+f_config = open(filename, "w")
+f_config.write(sysConfigBlob)
+f_config.close()
+print("Finished starting aux server")
+time.sleep(10)
+
+# Create Leader Server (MPC + 2PC + QuickSilver)
+cmd = ('export AWS_DEFAULT_REGION=us-west-2; aws ec2 run-instances --image-id %s --count 1 --instance-type c5.9xlarge --key-name HOLMES --placement "{\\\"AvailabilityZone\\\": \\\"us-west-2a\\\"}" --security-groups HOLMES --tag-specifications \"ResourceType=instance,Tags=[{Key=Name,Value=%s}]\"') % (regionAMIs["leader"], "leader")
+process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+out = process.stdout.read()
+leaderConfig = json.loads(out)
+leaderID = leaderConfig["Instances"][0]["InstanceId"]
+sysConfig["LeaderID"] = leaderID
+sysConfigBlob = json.dumps(sysConfig)
+f_config = open(filename, "w")
+f_config.write(sysConfigBlob)
+f_config.close()
+print("Finished starting leader server")
+time.sleep(10)
 
 # Create Coordinator Server
 cmd = ('export AWS_DEFAULT_REGION=us-west-2; aws ec2 run-instances --image-id %s --count 1 --instance-type c5.2xlarge --key-name HOLMES --placement "{\\\"AvailabilityZone\\\": \\\"us-west-2a\\\"}" --security-groups HOLMES --tag-specifications \"ResourceType=instance,Tags=[{Key=Name,Value=%s}]\"') % (regionAMIs["coordinator"], "coordinator")
@@ -67,8 +73,7 @@ sysConfigBlob = json.dumps(sysConfig)
 f_config = open(filename, "w")
 f_config.write(sysConfigBlob)
 f_config.close()
-
-
+print("Finished starting coordinator server")
 #print(followerIDs, followerConfig)
 
 # Wait for all instances to be fully started
@@ -221,18 +226,18 @@ if sysConfig["LeaderPublicAddr"] != "127.0.0.1":
 print("copied config to leader server")
 
 if sysConfig["CoordinatorPublicAddr"] != "127.0.0.1":
-    cmd = ("scp -i %s -o StrictHostKeyChecking=no %s ubuntu@%s:~/.ssh/") % (sshKeyPath, sshKeyPath, sysConfig["CoordinatorPublicAddr"])
-    process = subprocess.Popen(cmd, shell=True, stdout=devNull)
-    process.wait()
+    #cmd = ("scp -i %s -o StrictHostKeyChecking=no %s ubuntu@%s:~/.ssh/") % (sshKeyPath, sshKeyPath, sysConfig["CoordinatorPublicAddr"])
+    #process = subprocess.Popen(cmd, shell=True, stdout=devNull)
+    #process.wait()
 
     cmd = ("chmod 400 %s") % (sshKeyPath)
     process = subprocess.Popen(generateRemoteCmdStr(sysConfig["CoordinatorPublicAddr"], cmd), shell=True)
     process.wait()
 
     # TO-DO: coordinator server should git clone from the holmes-artifact repo or at least cp from here
-    cmd = ("cd ~; git clone https://github.com/holmes-inputcheck/holmes-artifacts.git")
-    process = subprocess.Popen(generateRemoteCmdStr(sysConfig["CoordinatorPublicAddr"], cmd), shell=True)
-    process.wait()
+    #cmd = ("cd ~; git clone https://github.com/holmes-inputcheck/holmes-artifacts.git")
+    #process = subprocess.Popen(generateRemoteCmdStr(sysConfig["CoordinatorPublicAddr"], cmd), shell=True)
+    #process.wait()
 print("copied config to coordinator server")
 
 # Follower Servers

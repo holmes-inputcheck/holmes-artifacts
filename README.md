@@ -17,7 +17,7 @@ pip3 install latex
 
 3. [3 minutes] To start a cluster, run the following:
 ```
-cd bench
+cd holmes-artifacts
 python3 start_cluster.py
 ```
 This will create the EC2 instances for the experiments using the correct AMI and copy configuration files to each instance. Default TLS keys and certificates are included for testing.
@@ -30,18 +30,15 @@ Note: If you see a message that a SSH connection was refused on port 22, then th
 
 4. If you are done for the day, run the following to stop all instances. Note that **stopping the cluster will stop all experiments**, so if your experiments are still running, do not stop the cluster:
 ```
-cd bench
 python3 stop_cluster.py
 ```
 You can then resume the cluster by running the following:
 ```
-cd bench
 python3 resume_cluster.py
 ```
 
 5. When you are finished with the experiments, tear down the cluster to allow others to run the experiments on the clusters. Note, you can only launch one cluster at once. Otherwise, you will exceed your vCPU limits.
 ```
-cd bench
 python3 teardown_cluster.py
 ```
 
@@ -58,7 +55,7 @@ python3 start_holmes_unit_tests.py
 python3 start_holmes_datasets.py
 ```
 
-## Running experiments
+## Part 1: Running experiments
 We provide an option for those running experiments to run an experiment both asynchronously and synchronously. Asynchronous is recommended over synchronous. We have a coordinator VM that remains online for the entire time, allowing you to disconnect from your local machine whenever you’d like and still have the experiment run. Synchronous requires you to remain connected to the AMI instance on your local machine at all times.
 
 Those who wish to run the scripts asynchronously (recommended) can continue to run experiments without staying connected to the AMI instances over ssh on their local machine, and is the recommended method of running experiments, especially for long experiments. However, you **must run asynchronous scripts one at a time**, since most scripts are designed to kill existing processes and scripts. Furthermore, this will hide any standard output that the experiment script outputs, which can be helpful for debugging.
@@ -169,7 +166,7 @@ python3 start_zk_marketing.py
 ```
 
 
-## Retrieving benchmark results
+## Part 2: Retrieving benchmark results
 
 In the section, you will automatically fetch the files and raw, unfiltered benchmark results onto your local machine with the provided scripts, and perform some pre-processing to make it much easier to graph. This will **not** create the plots or the graphs (wait till we get to the "Evaluating the experiment plots" section for that!) directly however, but will create .csv files from the results.
 
@@ -203,7 +200,7 @@ No need for these! :) You can skip straight to "Evaluating the experiment plots"
 python3 retrieve_marketing.py [ < 1 minute]
 ```
 
-## Plotting the experiment results
+## Part 3: Plotting the experiment results
 
 In this section, we transform the CSV files fetched and parsed in the last step into the graphs and plots.
 

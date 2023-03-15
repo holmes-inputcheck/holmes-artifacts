@@ -5,7 +5,6 @@ from benchClient import generateRemoteCmdStr
 username = "ubuntu"
 
 print("Starting asynchronous MPC marketing dataset bench.")
-print("Retrieve results after 35 minutes with `python3 retrieve_mpc_marketing.py`.")
 
 f_config = open('system.config')
 config = json.load(f_config)
