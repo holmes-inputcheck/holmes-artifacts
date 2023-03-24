@@ -238,6 +238,11 @@ if sysConfig["CoordinatorPublicAddr"] != "127.0.0.1":
     #cmd = ("cd ~; git clone https://github.com/holmes-inputcheck/holmes-artifacts.git")
     #process = subprocess.Popen(generateRemoteCmdStr(sysConfig["CoordinatorPublicAddr"], cmd), shell=True)
     #process.wait()
+
+    # send the updated config to coordinator
+    cmd = ("scp -i ~/.ssh/HOLMES.pem -o StrictHostKeyChecking=no %s ubuntu@%s:~/holmes-artifacts/") % ("system.config", sysConfig["CoordinatorPublicAddr"])
+    process = subprocess.Popen(cmd, shell=True)
+    process.wait()
 print("copied config to coordinator server")
 
 # Follower Servers

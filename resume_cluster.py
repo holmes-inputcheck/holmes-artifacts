@@ -52,14 +52,36 @@ for i in range(len(sysConfig["Followers"])):
     c = json.loads(out)
     newFollowerPublicAddrs.append(c["Reservations"][0]["Instances"][0]["PublicIpAddress"])
 
+# update leader server
+cmd = ('aws ec2 describe-instances --instance-ids "%s"') % (sysConfig["LeaderID"])
+process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+out = process.stdout.read()
+c = json.loads(out)
+newLeaderPublicAddr = (c["Reservations"][0]["Instances"][0]["PublicIpAddress"])
+
+
+# update coordinator server
+cmd = ('aws ec2 describe-instances --instance-ids "%s"') % (sysConfig["CoordinatorID"])
+process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+out = process.stdout.read()
+c = json.loads(out)
+newCoordinatorPublicAddr = (c["Reservations"][0]["Instances"][0]["PublicIpAddress"])
+
 f_config = open(filename, "w")
 
 sysConfig["AuxPublicAddr"] = newAuxPublicAddr
 for i in range(len(sysConfig["Followers"])):
     sysConfig["Followers"][i]["PublicAddr"] = newFollowerPublicAddrs[i]
+sysConfig["LeaderPublicAddr"] = newLeaderPublicAddr
+sysConfig["CoordinatorPublicAddr"] = newCoordinatorPublicAddr
 
 sysConfigBlob = json.dumps(sysConfig)
 f_config.write(sysConfigBlob)
 f_config.close()
+
+# send the updated config to coordinator
+cmd = ("scp -i ~/.ssh/HOLMES.pem -o StrictHostKeyChecking=no %s ubuntu@%s:~/holmes-artifacts/") % ("system.config", sysConfig["CoordinatorPublicAddr"])
+process = subprocess.Popen(cmd, shell=True)
+process.wait()
 
 print("Finished cluster resume")
