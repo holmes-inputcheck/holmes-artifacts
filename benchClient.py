@@ -24,7 +24,7 @@ def getThroughput():
         exit
 
     f = open('./spdz-mpc-p2-throughput.out', 'r')
-    throughput = int(f.readline().rsplit()[0])
+    throughput = float(f.readline().rsplit()[0])
     f.close()
 
     return throughput
@@ -35,7 +35,7 @@ def getMPC6Throughput():
         exit
 
     f = open('./spdz-mpc-p6-throughput.out', 'r')
-    throughput = int(f.readline().rsplit()[0])
+    throughput = float(f.readline().rsplit()[0])
     f.close()
 
     return throughput
@@ -46,7 +46,7 @@ def getMPC10Throughput():
         exit
 
     f = open('./spdz-mpc-p10-throughput.out', 'r')
-    throughput = int(f.readline().rsplit()[0])
+    throughput = float(f.readline().rsplit()[0])
     f.close()
 
     return throughput
@@ -58,7 +58,7 @@ def get2PC6Throughput():
         exit
 
     f = open('./spdz-2pc-p6-throughput.out', 'r')
-    throughput = int(f.readline().rsplit()[0])
+    throughput = float(f.readline().rsplit()[0])
     f.close()
 
     return throughput
@@ -69,7 +69,7 @@ def get2PC10Throughput():
         exit
 
     f = open('./spdz-2pc-p10-throughput.out', 'r')
-    throughput = int(f.readline().rsplit()[0])
+    throughput = float(f.readline().rsplit()[0])
     f.close()
 
     return throughput

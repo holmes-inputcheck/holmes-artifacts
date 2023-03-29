@@ -1,4 +1,5 @@
 #!/bin/bash
+python3 retrieve_spdz.py;
 python3 retrieve_2pc_bench.py;
 python3 retrieve_mpc_bench.py;
 python3 retrieve_nizk_bench.py;
