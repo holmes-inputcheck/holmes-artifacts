@@ -46,7 +46,7 @@ range_raw_filenames = ["range_check_100000_nizk.txt", "range_check_200000_nizk.t
 range_csv_filenames = ["range_100000_spartan_nizk.csv", "range_200000_spartan_nizk.csv", "range_500000_spartan_nizk.csv"]
 jl_raw_filenames = ["jl_100000_nizk.txt", "jl_200000_nizk.txt", "jl_500000_nizk.txt"]
 jl_csv_filenames = ["jl_100000_spartan_nizk.csv", "jl_200000_spartan_nizk.csv", "jl_500000_spartan_nizk.csv"]
-'''
+
 for file in range_raw_filenames:
     cmd = ("scp -i %s -o StrictHostKeyChecking=no ubuntu@%s:~/HOLMES/holmes-spartan/%s .") % (keyPath, auxPublicAddr, file)
     process = subprocess.Popen(cmd, shell=True)
@@ -56,7 +56,7 @@ for file in jl_raw_filenames:
     cmd = ("scp -i %s -o StrictHostKeyChecking=no ubuntu@%s:~/HOLMES/holmes-spartan/%s .") % (keyPath, auxPublicAddr, file)
     process = subprocess.Popen(cmd, shell=True)
     process.wait()
-'''
+
 
 #print("retrieved all files")
 
