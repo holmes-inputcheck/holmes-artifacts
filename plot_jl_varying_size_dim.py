@@ -19,7 +19,7 @@ import matplotlib.cbook
 import matplotlib as mpl
 
 mpl.rcParams['text.usetex'] = True
-mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath,mathptmx}']
+plt.rcParams.update( { "text.latex.preamble": r"\usepackage{amsmath,mathptmx}", } )
 
 warnings.filterwarnings('ignore')
 mpl.rcParams['pdf.fonttype'] = 42
@@ -59,7 +59,7 @@ import matplotlib.cbook
 import matplotlib as mpl
 
 mpl.rcParams['text.usetex'] = True
-mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath,mathptmx}']
+plt.rcParams.update( { "text.latex.preamble": r"\usepackage{amsmath,mathptmx}", } )
 
 warnings.filterwarnings('ignore')
 mpl.rcParams['pdf.fonttype'] = 42

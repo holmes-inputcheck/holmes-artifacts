@@ -23,7 +23,7 @@ for file in files:
     process.wait()
 
 mpl.rcParams['text.usetex'] = True
-mpl.rcParams['text.latex.preamble'] = [r'\usepackage{amsmath,mathptmx,boldmath}']
+plt.rcParams.update( { "text.latex.preamble": r"\usepackage{amsmath,mathptmx}", } )
 
 mpl.rcParams['pdf.fonttype'] = 42
 mpl.rcParams['ps.fonttype'] = 42
