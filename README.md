@@ -22,6 +22,8 @@ python3 start_cluster.py
 ```
 This will create the EC2 instances for the experiments using the correct AMI and copy configuration files to each instance. Default TLS keys and certificates are included for testing.
 
+Note: If you see a JSONDecodeError involving `json.loads(out)` and `raise JSONDecodeError("Expecting value", s, err.value)`, it means that the `system.config` file is missing or corrupted. In this case, download the latest `system.config` file from https://github.com/holmes-inputcheck/holmes-artifacts/blob/main/system.config and add it to `/path/to/holmes-artifacts/`.
+
 Note: If you see a message that a SSH connection was refused on port 22, then the script was not able to copy over the configuration file because the instance had not fully started yet. In this case, either teardown the cluster and restart (waiting a few minutes between teardown and starting again), or manually copy the configuration files yourself using `scp`.
 
 This will create the EC2 instances for the experiments using the correct AMI and copy the necessary configuration files to each instance.
@@ -37,7 +39,7 @@ You can then resume the cluster by running the following:
 python3 resume_cluster.py
 ```
 
-5. When you are finished with the experiments, tear down the cluster to allow others to run the experiments on the clusters. Note, you can only launch one cluster at once. Otherwise, you will exceed your vCPU limits.
+5. When you are finished with the experiments, tear down the cluster to allow others to run the experiments on the clusters. Please do so in order to save AWS resources and allow others to start a cluster. Note, you can only launch one cluster at once. Otherwise, you will exceed your vCPU limits.
 ```
 python3 teardown_cluster.py
 ```
@@ -175,6 +177,13 @@ If you want a hands-off approach, we have provided an easy one-run script that w
 
 ```
 ./retrieve-all.sh
+```
+
+### (Prerequisite) Retrieving SPDZ Offline Throughputs
+This script will retrieve the SPDZ Offline Throughputs. You will need to run this script beforehand, as all future retrieval scripts will depend on the files retrieved from this script.
+
+```
+python3 retrieve_spdz.py [< 1 minute]
 ```
 
 ### Misc Bench Scripts (Experiment E1 + E2)
