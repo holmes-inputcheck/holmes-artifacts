@@ -180,7 +180,7 @@ If you want a hands-off approach, we have provided an easy one-run script that w
 ```
 
 ### (Prerequisite) Retrieving SPDZ Offline Throughputs
-This script will retrieve the SPDZ Offline Throughputs. You will need to run this script beforehand, as all future retrieval scripts will depend on the files retrieved from this script.
+This script will retrieve the SPDZ Offline Throughputs. You will need to run this script before running any future script, and re-run this script each time you finish the SPDZ Offline Throughput benchmark scripts, as all future retrieval scripts will depend on the files retrieved from this script.
 
 ```
 python3 retrieve_spdz.py [< 1 minute]
