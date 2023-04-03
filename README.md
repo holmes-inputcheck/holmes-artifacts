@@ -52,7 +52,7 @@ python3 start_cluster.py
 ```
 This will create the EC2 instances for the experiments using the correct AMI and copy configuration files to each instance. Default TLS keys and certificates are included for testing.
 
-Note: If you see a JSONDecodeError involving `json.loads(out)` and `raise JSONDecodeError("Expecting value", s, err.value)`, it means that the `system.config` file is missing or corrupted. In this case, download the latest `system.config` file from https://github.com/holmes-inputcheck/holmes-artifacts/blob/main/system.config and add it to `/path/to/holmes-artifacts/`.
+Note: If you see a JSONDecodeError involving `json.loads(out)` and `raise JSONDecodeError("Expecting value", s, err.value)`, it means that the `system.config` file is missing or corrupted. In this case, download the latest `system.config` file from https://github.com/holmes-inputcheck/holmes-artifacts/blob/main/system.config and add it to `/path/to/holmes-artifacts/`. You will also need to manually teardown the servers in your AWS console, since servers may have been started but their instance IDs have not been saved to the configuration file.
 
 Note: If you see a message that a SSH connection was refused on port 22, then the script was not able to copy over the configuration file because the instance had not fully started yet. In this case, either teardown the cluster and restart (waiting a few minutes between teardown and starting again), or manually copy the configuration files yourself using `scp`.
 
