@@ -20,7 +20,10 @@ def generateRemoteCmdStrScreen(machine, remoteCmd):
 
 def getThroughput():
     if not os.path.exists("./spdz-mpc-p2-throughput.out"):
-        print("You must run the SPDZ benchmarking script first with `python3 start_spdz_bench.py`")
+        print("SPDZ MPC offline throughput file not found!")
+        print("You either haven't completed the SPDZ benchmarks yet (run `python3 start_spdz_bench.py`)")
+        print("Or you haven't retrieved the SPDZ benchmarks yet (run `python3 retrieve_spdz.py`)")
+        print("Try the latter command first.")
         exit
 
     f = open('./spdz-mpc-p2-throughput.out', 'r')
@@ -31,7 +34,10 @@ def getThroughput():
 
 def getMPC6Throughput():
     if not os.path.exists("./spdz-mpc-p6-throughput.out"):
-        print("You must run the SPDZ benchmarking script first with `python3 start_spdz_bench.py`")
+        print("SPDZ MPC offline throughput file not found!")
+        print("You either haven't completed the SPDZ benchmarks yet (run `python3 start_spdz_bench.py`)")
+        print("Or you haven't retrieved the SPDZ benchmarks yet (run `python3 retrieve_spdz.py`)")
+        print("Try the latter command first.")
         exit
 
     f = open('./spdz-mpc-p6-throughput.out', 'r')
@@ -42,7 +48,10 @@ def getMPC6Throughput():
 
 def getMPC10Throughput():
     if not os.path.exists("./spdz-mpc-p10-throughput.out"):
-        print("You must run the SPDZ benchmarking script first with `python3 start_spdz_bench.py`")
+        print("SPDZ MPC offline throughput file not found!")
+        print("You either haven't completed the SPDZ benchmarks yet (run `python3 start_spdz_bench.py`)")
+        print("Or you haven't retrieved the SPDZ benchmarks yet (run `python3 retrieve_spdz.py`)")
+        print("Try the latter command first.")
         exit
 
     f = open('./spdz-mpc-p10-throughput.out', 'r')
@@ -54,7 +63,10 @@ def getMPC10Throughput():
 
 def get2PC6Throughput():
     if not os.path.exists("./spdz-2pc-p6-throughput.out"):
-        print("You must run the SPDZ benchmarking script first with `python3 start_spdz_2pc_bench.py`")
+        print("SPDZ 2PC offline throughput file not found!")
+        print("You either haven't completed the 2PC SPDZ benchmarks yet (run `python3 start_spdz_2pc_bench.py`)")
+        print("Or you haven't retrieved the SPDZ benchmarks yet (run `python3 retrieve_spdz.py`)")
+        print("Try the latter command first.")
         exit
 
     f = open('./spdz-2pc-p6-throughput.out', 'r')
@@ -65,7 +77,10 @@ def get2PC6Throughput():
 
 def get2PC10Throughput():
     if not os.path.exists("./spdz-2pc-p10-throughput.out"):
-        print("You must run the SPDZ benchmarking script first with `python3 start_spdz_2pc_bench.py`")
+        print("SPDZ 2PC offline throughput file not found!")
+        print("You either haven't completed the 2PC SPDZ benchmarks yet (run `python3 start_spdz_2pc_bench.py`)")
+        print("Or you haven't retrieved the SPDZ benchmarks yet (run `python3 retrieve_spdz.py`)")
+        print("Try the latter command first.")
         exit
 
     f = open('./spdz-2pc-p10-throughput.out', 'r')
