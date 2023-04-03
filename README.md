@@ -3,6 +3,36 @@
 
 For our experiments, we will use a cluster of AWS EC2 instances. Reviewers should have been provided with credentials to our AWS environment with compute resources. Reviewers should have also moved `HOLMES.pem` (provided with submission) to `~/.ssh` and set permissions to 400 using `chmod 400 HOLMES.pem`
 
+### Non-reviewer Pre-Setup
+
+For those who are not a reviewer (regular user) and want to load your own cluster on your own AWS account, we have made the AMIs public such that you can start a cluster on your own personal AWS account. Note that this will load twelve c5.9xlarge instances, and one c5.2xlarge instance, which is quite costly to run.
+
+1. On your AWS console, select the region us-west-2 (Oregon), and then create a new security group through EC2 -> Network & Security -> Security Groups -> Create Security Group.
+
+Use `HOLMES` as the Security group name. Then add two inbound rules:
+
+- Inbound Rule 1: `SSH` as the Type, `0.0.0.0/0` as the Source
+- Inbound Rule 2: `Custom TCP` as the Type, `5000-5032` as the Port range, `0.0.0.0/0` as the Source
+
+Use the default outbound rule: 
+- `All traffic` as the Type
+
+2. On your AWS account, select the region us-west-2 (Oregon), and then create a new key pair through EC2 -> Network & Security -> Key Pairs -> Create key pair.
+
+Use `HOLMES` as the Name, `RSA` as the Key pair type, and `.pem` as the Private key file format.
+
+3. Move `HOLMES.pem` to `~/.ssh`
+```
+mv /path/to/HOLMES.pem ~/.ssh
+```
+
+4. Change permissions of `HOLMES.pem`
+```
+chmod 400 ~/.ssh/HOLMES.pem
+```
+
+### Main Setup
+
 1. [6 minutes] Make sure python3 is downloaded. 
 Install [TexLive/MacTeX](https://tug.org/texlive/), and then run:
 ```
