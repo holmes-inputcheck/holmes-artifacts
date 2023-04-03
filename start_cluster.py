@@ -6,7 +6,7 @@ regionAMIs = {
         "aux": "ami-01e1a4855d549761f",
         "follower": "ami-0489da360b66825e8",
         "leader": "ami-09e833043aecffd75",
-        "coordinator": "ami-0fbf6e826da84365a"
+        "coordinator": "ami-03a2befe1cbdc55b5"
         }  
 
 filename = "system.config"
@@ -226,9 +226,9 @@ if sysConfig["LeaderPublicAddr"] != "127.0.0.1":
 print("copied config to leader server")
 
 if sysConfig["CoordinatorPublicAddr"] != "127.0.0.1":
-    #cmd = ("scp -i %s -o StrictHostKeyChecking=no %s ubuntu@%s:~/.ssh/") % (sshKeyPath, sshKeyPath, sysConfig["CoordinatorPublicAddr"])
-    #process = subprocess.Popen(cmd, shell=True, stdout=devNull)
-    #process.wait()
+    cmd = ("scp -i %s -o StrictHostKeyChecking=no %s ubuntu@%s:~/.ssh/") % (sshKeyPath, sshKeyPath, sysConfig["CoordinatorPublicAddr"])
+    process = subprocess.Popen(cmd, shell=True, stdout=devNull)
+    process.wait()
 
     cmd = ("chmod 400 %s") % (sshKeyPath)
     process = subprocess.Popen(generateRemoteCmdStr(sysConfig["CoordinatorPublicAddr"], cmd), shell=True)
