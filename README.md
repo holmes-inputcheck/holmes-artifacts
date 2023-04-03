@@ -52,13 +52,13 @@ python3 start_cluster.py
 ```
 This will create the EC2 instances for the experiments using the correct AMI and copy configuration files to each instance. Default TLS keys and certificates are included for testing.
 
-Note: If you see a JSONDecodeError involving `json.loads(out)` and `raise JSONDecodeError("Expecting value", s, err.value)`, it means that the `system.config` file is missing or corrupted. In this case, download the latest `system.config` file from https://github.com/holmes-inputcheck/holmes-artifacts/blob/main/system.config and add it to `/path/to/holmes-artifacts/`. You will also need to manually teardown the servers in your AWS console, since servers may have been started but their instance IDs have not been saved to the configuration file.
+Note: If you see a JSONDecodeError involving `json.loads(out)` and `raise JSONDecodeError("Expecting value", s, err.value)`, it means that the `system.config` file is missing or corrupted. In this case, download the latest `system.config` file from https://github.com/holmes-inputcheck/holmes-artifacts/blob/main/system.config and add it to `/path/to/holmes-artifacts/`. You will also need to manually terminate the servers in your AWS EC2 console, since servers may have been started but their instance IDs have not been saved to the configuration file.
 
 Note: If you see a message that a SSH connection was refused on port 22, then the script was not able to copy over the configuration file because the instance had not fully started yet. In this case, either teardown the cluster and restart (waiting a few minutes between teardown and starting again), or manually copy the configuration files yourself using `scp`.
 
 This will create the EC2 instances for the experiments using the correct AMI and copy the necessary configuration files to each instance.
 
-Note: If you see a message that a SSH connection was refused on port 22, then the script was not able to copy over the configuration file because the instance had not fully started yet. In this case, either teardown the cluster and restart (waiting a few minutes between teardown and starting again), or manually copy the configuration files yourself using `scp`.
+Note: If you see a message that a SSH connection was refused on port 22, then the script was not able to copy over the configuration file because the instance had not fully started yet. In this case, either teardown the cluster using `python3 teardown_cluster.py` and restart (waiting a few minutes between teardown and starting again), or manually copy the configuration files yourself using `scp`.
 
 4. If you are done for the day, run the following to stop all instances. Note that **stopping the cluster will stop all experiments**, so if your experiments are still running, do not stop the cluster:
 ```
