@@ -31,6 +31,19 @@ mv /path/to/HOLMES.pem ~/.ssh
 chmod 400 ~/.ssh/HOLMES.pem
 ```
 
+5. On your AWS account, select the region us-west-2 (Oregon), and then create a new IAM user group through Identity and Access Management (IAM) -> Access Management -> User groups -> Create Group.
+
+Use `HOLMES-User-Group` as the User group name, `AmazonEC2FullAccess` as the Policy name to attach to the user group.
+
+6. On your AWS account, select the region us-west-2 (Oregon), and then create a new IAM user through Identity and Access Management (IAM) -> Access Management -> Users -> Add Users.
+
+Use `HOLMES-User` as the User name, `HOLMES-User-Group` as the User group.
+
+7. Select the `HOLMES-User` user in the IAM -> Users console. Then go to the "Security credentials" tab, and scroll down and click on "Create access key".
+- Select `Commmand Line Interface (CLI)`
+- Copy down the Access key and Secret access key for the main setup
+
+
 ### Main Setup
 
 1. [6 minutes] Make sure python3 is downloaded. 
@@ -43,7 +56,7 @@ pip3 install pandas
 pip3 install latex
 ```
 
-2. [5 minutes] Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) (version 2 works) and run `aws configure` using the instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) (use `us-west-2` as the default region, use `json` as the default output format, and we will directly provide the Access key ID and the secret access key to the reviewers upon submission).
+2. [5 minutes] Install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) (version 2 works) and run `aws configure` using the instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) (use `us-west-2` as the default region, use `json` as the default output format, and we will directly provide the Access key ID and the secret access key to the reviewers upon submission. If you are a non-reviewer, use the Access key ID and the secret access key you created in Step 7 of the Non-Reviewer Pre-Setup.)
 
 3. [3 minutes] To start a cluster, run the following:
 ```
