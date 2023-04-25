@@ -119,7 +119,7 @@ It will take over 24 hours for all the experiments to run, and mistakes may occu
 python3 start_coordinator_all.py
 ```
 
-Then, you can skip to the “Retrieving benchmark results”
+Then, you can skip to the “Part 2: Retrieving benchmark results”
 
 ### SPDZ Offline Throughput Benchmarking [~1 hour]
 Most future experiments will depend on the SPDZ offline throughput for computing the offline input loading cost, or for the offline phase commonly associated with MPC. We also compute the pairwise 2PC offline throughput for SPDZ, which will be used for the pairwise 2PC experiments.
@@ -213,7 +213,7 @@ python3 start_zk_marketing.py
 
 ## Part 2: Retrieving benchmark results
 
-In the section, you will automatically fetch the files and raw, unfiltered benchmark results onto your local machine with the provided scripts, and perform some pre-processing to make it much easier to graph. This will **not** create the plots or the graphs (wait till we get to the "Evaluating the experiment plots" section for that!) directly however, but will create .csv files from the results.
+In the section, you will automatically fetch the files and raw, unfiltered benchmark results onto your local machine with the provided scripts, and perform some pre-processing to make it much easier to graph. This will **not** create the plots or the graphs (wait till we get to the "Part 3: Plotting the experiment results" section for that!) directly however, but will create .csv files from the results.
 
 ### Easy 1-piece script that retrieves all benchmark results:
 If you want a hands-off approach, we have provided an easy one-run script that will retrieve all the benchmark results for all of the experiments. You will need to successfully and completely run all the experiments before you can do this (you should wait at least 24 hours from whenever you ran `python3 start_coordinator_all.py`, or ensure you've run all the experiments above successfully)
@@ -245,7 +245,7 @@ python3 retrieve_zk_bench.py [< 1 minute]
 ```
 
 ### Statistical corruption accuracy graphs (Experiment E4)
-No need for these! :) You can skip straight to "Evaluating the experiment plots"!
+No need for these! :) You can skip straight to "Part 3: Plotting the experiment results"!
 
 ### Marketing dataset testing workflow benchmarking (Experiment E5)
 ```
