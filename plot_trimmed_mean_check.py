@@ -77,7 +77,7 @@ def plot_fig_mpc():
 
     plt.ylabel("Time (s)",fontsize=15)
     plt.yticks(np.arange(0,145,20), fontsize=15)
-    plt.xlabel("Range size", fontsize=15)
+    plt.xlabel("Threshold", fontsize=15)
     xts = [8, 12, 16, 20, 24]
     plt.xticks(xts, ["$2^8$", "$2^{12}$", "$2^{16}$", "$2^{20}$", "$2^{24}$"], fontsize=15)
 
